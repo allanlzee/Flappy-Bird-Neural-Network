@@ -1,0 +1,8 @@
+NEAT Algorithm for Neural Networks
+
+Inputs: Bird Y, Top Pipe, Bottom Pipe
+Outputs: Jump
+Activation Function: Hyperbolic Tangent (tan(h))
+Population Size: 100 Birds (Neural Networks) -> Maximum Generations
+Fitness Function: Evaluate how good the birds are (loss function?) (e.g. furthest bird)
+Maximum Generations: Restarting if neural network is "unlucky"
