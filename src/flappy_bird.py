@@ -101,7 +101,7 @@ class Bird:
 
 class Pipe:
     GAP = 225
-    VELOCITY = 8
+    VELOCITY = 10
 
     def __init__(self, x):
         self.x = x
@@ -149,7 +149,7 @@ class Pipe:
 
 
 class Base:
-    VELOCITY = 8
+    VELOCITY = 10
     WIDTH = BASE_IMAGE.get_width()
     IMAGE = BASE_IMAGE
 
@@ -183,8 +183,10 @@ def draw_window(window, birds, pipes, base, score):
     for bird in birds:
         bird.draw(window)
 
-    test = SCORE_FONT.render("Score: " + str(score), 1, (255, 255, 255))
-    window.blit(test, (WINDOW_WIDTH - 10 - test.get_width(), 10))
+    score_text = SCORE_FONT.render("Score: " + str(score), 1, (255, 255, 255))
+    window.blit(score_text, (WINDOW_WIDTH - 10 - score_text.get_width(), 10))
+    high_score_text = SCORE_FONT.render("High Score: " + str(score), 1, (255, 255, 255))
+    window.blit(high_score_text, (WINDOW_WIDTH - 10 - high_score_text.get_width(), 45))
 
     pygame.display.update()
 
@@ -192,6 +194,7 @@ def draw_window(window, birds, pipes, base, score):
 # Main Game Loop
 def main(genomes, config):
     score = 0
+    high_score = 0
 
     networks = []
     genomes_main = []
@@ -248,8 +251,7 @@ def main(genomes, config):
         for pipe in pipes:
             for x, bird in enumerate(birds):
                 if pipe.collide(bird):
-                    # score = 0
-                    # bird.move()  # Comment
+                    # bird.move()
                     # restart = True
                     # mid_restart = True
                     genomes_main[x].fitness -= 1  # Remove fitness from bird that hits pipe
